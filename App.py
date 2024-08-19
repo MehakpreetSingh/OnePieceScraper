@@ -41,23 +41,18 @@ def main():
 
         episode_id = int(episode_number)
         with st.spinner('Fetching episode link...'):
-            video_link = fetch_episode(episode_id)
+            selected_video_link = fetch_episode(episode_id)
 
-        if video_link:
+        if selected_video_link:
             # Display the video using Streamlit's video player
-            st.video(video_link)
+            st.video(selected_video_link)
 
             # Buttons to open video in different players
             st.write("Open in your preferred media player:")
 
-            if st.button('Open in IINA'):
-                st.markdown(f'<a href="iina://{video_link}" target="_blank">Open in IINA</a>', unsafe_allow_html=True)
-
-            if st.button('Open in PotPlayer'):
-                st.markdown(f'<a href="potplayer://{video_link}" target="_blank">Open in PotPlayer</a>', unsafe_allow_html=True)
-
-            if st.button('Open in VLC'):
-                st.markdown(f'<a href="vlc://{video_link}" target="_blank">Open in VLC</a>', unsafe_allow_html=True)
+            st.markdown(f'<a href="iina://{selected_video_link}" target="_blank">Open in IINA</a>', unsafe_allow_html=True)
+            st.markdown(f'<a href="potplayer://{selected_video_link}" target="_blank">Open in PotPlayer</a>', unsafe_allow_html=True)
+            st.markdown(f'<a href="vlc://{selected_video_link}" target="_blank">Open in VLC</a>', unsafe_allow_html=True)
         else:
             st.error("Episode not found or video link could not be retrieved. Please enter a valid episode number.")
 
