@@ -1,0 +1,1 @@
+open("onepiece_links.txt", "w") as file
